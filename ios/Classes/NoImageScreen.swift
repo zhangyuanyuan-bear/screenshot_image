@@ -31,18 +31,16 @@ public class NoImageScreen {
         guard let w = window else { return }
         
         if (!w.subviews.contains(secureTextField)) {
-            secureTextField.isSecureTextEntry = true
+        
             w.addSubview(secureTextField)
             secureTextField.centerYAnchor.constraint(equalTo: w.centerYAnchor).isActive = true
             secureTextField.centerXAnchor.constraint(equalTo: w.centerXAnchor).isActive = true
-            
             
             w.addSubview(bgView)
             bgView.backgroundColor = .blue
             bgView.frame = CGRect(x: 0 , y: 0, width: w.screen.bounds.width, height: w.screen.bounds.height)
             w.layer.superlayer?.addSublayer(bgView.layer)
             w.layer.superlayer?.addSublayer(secureTextField.layer)
-            
             
             if #available(iOS 17.0, *) {
                 bgView.layer.sublayers?.last?.addSublayer(w.layer)
